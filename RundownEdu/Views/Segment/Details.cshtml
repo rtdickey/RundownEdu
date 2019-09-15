@@ -1,0 +1,48 @@
+﻿@model RundownEdu.Models.Segment
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Segment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Reader)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reader)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstimatedReadTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstimatedReadTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActualReadTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActualReadTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Story)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Story.StoryId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SegmentId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

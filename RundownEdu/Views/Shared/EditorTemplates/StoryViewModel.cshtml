@@ -1,0 +1,9 @@
+﻿@model RundownEdu.ViewModels.StoryViewModel
+@{
+    Layout = null;
+}
+
+<tr>
+    <td>@Html.EditorFor(model => model.Title)</td>
+    <td>@Html.DisplayFor(model => model.Rundown.Title)</td>
+</tr>
