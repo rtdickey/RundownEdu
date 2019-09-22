@@ -32,7 +32,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr style="background-color: @item.Show.Color; color: @item.Show.FontColor;">
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>

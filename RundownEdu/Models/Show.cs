@@ -13,6 +13,8 @@ namespace RundownEdu.Models
         public int ShowId { get; set; }
         public string Title { get; set; }
         public string Color { get; set; }
+        [NotMapped]
+        public string FontColor { get; set; } = "#000000";
         public bool Active { get; set; }
         public virtual List<Rundown> Rundowns { get; set; }
     }

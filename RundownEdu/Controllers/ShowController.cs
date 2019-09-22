@@ -65,14 +65,14 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Show/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var show = await _context.Shows.FindAsync(id);
+            var show = _context.Shows.Where(s => s.ShowId == id).FirstOrDefault();
             if (show == null)
             {
                 return NotFound();
@@ -85,7 +85,7 @@ namespace RundownEdu.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ShowId,Title,Active")] Show show)
+        public ActionResult Edit(int id, [Bind("ShowId,Title,Active,Color")] Show show)
         {
             if (id != show.ShowId)
             {
@@ -97,7 +97,7 @@ namespace RundownEdu.Controllers
                 try
                 {
                     _context.Update(show);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
