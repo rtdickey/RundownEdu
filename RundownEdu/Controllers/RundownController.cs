@@ -20,10 +20,10 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Rundown
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            var rundownEduDBContext = _context.Rundowns.Include(r => r.Show);
-            return View(await rundownEduDBContext.ToListAsync());
+            var modelList = _context.Rundowns.Include(r => r.Show).ToList();
+            return View(modelList);
         }
 
         // GET: Rundown/Details/5

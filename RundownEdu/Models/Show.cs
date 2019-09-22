@@ -12,6 +12,7 @@ namespace RundownEdu.Models
         [Key]
         public int ShowId { get; set; }
         public string Title { get; set; }
+        public string Color { get; set; }
         public bool Active { get; set; }
         public virtual List<Rundown> Rundowns { get; set; }
     }
