@@ -53,7 +53,7 @@ namespace RundownEdu.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShowId,Title,Active")] Show show)
+        public async Task<IActionResult> Create([Bind("ShowId,Title,Active,Color")] Show show)
         {
             if (ModelState.IsValid)
             {

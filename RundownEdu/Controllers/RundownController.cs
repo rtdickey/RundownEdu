@@ -11,7 +11,7 @@ using RundownEdu.ViewModels;
 
 namespace RundownEdu.Controllers
 {
-    public class RundownController : Controller
+    public class RundownController : BaseController
     {
         private readonly RundownEduDBContext _context;
 
@@ -26,14 +26,7 @@ namespace RundownEdu.Controllers
             var modelList = _context.Rundowns.Include(r => r.Show).ToList();
             foreach (Rundown model in modelList)
             {
-                string colorCode = model.Show.Color.TrimStart('#');
-                Color showColor = Color.FromArgb(255, // hardcoded opaque
-                int.Parse(colorCode.Substring(0, 2), System.Globalization.NumberStyles.HexNumber),
-                int.Parse(colorCode.Substring(2, 2), System.Globalization.NumberStyles.HexNumber),
-                int.Parse(colorCode.Substring(4, 2), System.Globalization.NumberStyles.HexNumber));
-                if (showColor.GetBrightness() <= 0.5) {
-                    model.Show.FontColor = "#FFFFFF";
-                }
+                FontColorManager(model.Show);
             }
 
             return View(modelList);
