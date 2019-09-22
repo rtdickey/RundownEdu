@@ -19,21 +19,21 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Show
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await _context.Shows.ToListAsync());
+            var modelList = _context.Shows.ToList();
+            return View(modelList);
         }
 
         // GET: Show/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var show = await _context.Shows
-                .FirstOrDefaultAsync(m => m.ShowId == id);
+            var show = _context.Shows.FirstOrDefault(m => m.ShowId == id);
             if (show == null)
             {
                 return NotFound();
@@ -43,28 +43,30 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Show/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Show/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShowId,Title,Active,Color")] Show show)
+        public ActionResult Create([Bind("ShowId,Title,Active,Color")] Show show)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(show);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(show);
+                    _context.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+                } catch (Exception ex)
+                {
+                    return View(show);
+                }
             }
             return View(show);
         }
 
-        // GET: Show/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,9 +82,6 @@ namespace RundownEdu.Controllers
             return View(show);
         }
 
-        // POST: Show/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, [Bind("ShowId,Title,Active,Color")] Show show)
@@ -116,15 +115,14 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Show/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var show = await _context.Shows
-                .FirstOrDefaultAsync(m => m.ShowId == id);
+            var show = _context.Shows.FirstOrDefault(m => m.ShowId == id);
             if (show == null)
             {
                 return NotFound();
@@ -136,11 +134,11 @@ namespace RundownEdu.Controllers
         // POST: Show/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            var show = await _context.Shows.FindAsync(id);
+            var show = _context.Shows.Find(id);
             _context.Shows.Remove(show);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
