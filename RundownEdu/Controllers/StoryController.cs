@@ -19,21 +19,20 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Story
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await _context.Stories.ToListAsync());
+            return View(_context.Stories.ToList());
         }
 
         // GET: Story/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var story = await _context.Stories
-                .FirstOrDefaultAsync(m => m.StoryId == id);
+            var story = _context.Stories.FirstOrDefault(m => m.StoryId == id);
             if (story == null)
             {
                 return NotFound();
@@ -43,7 +42,7 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Story/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
             return View();
         }
@@ -53,26 +52,26 @@ namespace RundownEdu.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StoryId,Title")] Story story)
+        public ActionResult Create([Bind("StoryId,Title")] Story story)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(story);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             return View(story);
         }
 
         // GET: Story/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var story = await _context.Stories.FindAsync(id);
+            var story = _context.Stories.Find(id);
             if (story == null)
             {
                 return NotFound();
@@ -85,7 +84,7 @@ namespace RundownEdu.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StoryId,Title")] Story story)
+        public ActionResult Edit(int id, [Bind("StoryId,Title")] Story story)
         {
             if (id != story.StoryId)
             {
@@ -97,7 +96,7 @@ namespace RundownEdu.Controllers
                 try
                 {
                     _context.Update(story);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,15 +115,15 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Story/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var story = await _context.Stories
-                .FirstOrDefaultAsync(m => m.StoryId == id);
+            var story = _context.Stories
+                .FirstOrDefault(m => m.StoryId == id);
             if (story == null)
             {
                 return NotFound();
@@ -136,11 +135,11 @@ namespace RundownEdu.Controllers
         // POST: Story/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            var story = await _context.Stories.FindAsync(id);
+            var story = _context.Stories.Find(id);
             _context.Stories.Remove(story);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 

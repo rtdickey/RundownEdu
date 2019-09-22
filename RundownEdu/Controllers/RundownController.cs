@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -33,16 +32,14 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Rundown/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var rundown = await _context.Rundowns
-                .Include(r => r.Show)
-                .FirstOrDefaultAsync(m => m.RundownId == id);
+            var rundown = _context.Rundowns.Include(r => r.Show).FirstOrDefault(m => m.RundownId == id);
             if (rundown == null)
             {
                 return NotFound();
@@ -53,23 +50,20 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Rundown/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
             ViewData["Show"] = new SelectList(_context.Shows, "ShowId", "Title");
             return View();
         }
 
-        // POST: Rundown/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RundownId,Title,StartTime,EndTime,ShowId,Active")] Rundown rundown)
+        public ActionResult Create([Bind("RundownId,Title,StartTime,EndTime,ShowId,Active")] Rundown rundown)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(rundown);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Show"] = new SelectList(_context.Shows, "ShowId", "Title", rundown.ShowId);
@@ -77,14 +71,14 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Rundown/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var rundown = await _context.Rundowns.FindAsync(id);
+            var rundown = _context.Rundowns.Where(r => r.RundownId == id).Include(r => r.Show).Include(r => r.Stories).FirstOrDefault();
             if (rundown == null)
             {
                 return NotFound();
@@ -100,7 +94,7 @@ namespace RundownEdu.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RundownId,Title,StartTime,EndTime,ShowId,Active")] Rundown rundown)
+        public ActionResult Edit(int id, [Bind("RundownId,Title,StartTime,EndTime,ShowId,Active")] Rundown rundown)
         {
             if (id != rundown.RundownId)
             {
@@ -112,7 +106,7 @@ namespace RundownEdu.Controllers
                 try
                 {
                     _context.Update(rundown);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -132,16 +126,14 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Rundown/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var rundown = await _context.Rundowns
-                .Include(r => r.Show)
-                .FirstOrDefaultAsync(m => m.RundownId == id);
+            var rundown = _context.Rundowns.Include(r => r.Show).FirstOrDefault(m => m.RundownId == id);
             if (rundown == null)
             {
                 return NotFound();
@@ -153,11 +145,11 @@ namespace RundownEdu.Controllers
         // POST: Rundown/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            var rundown = await _context.Rundowns.FindAsync(id);
+            var rundown = _context.Rundowns.Find(id);
             _context.Rundowns.Remove(rundown);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 

@@ -19,23 +19,21 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Segment
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
             var rundownEduDBContext = _context.Segments.Include(s => s.Story);
-            return View(await rundownEduDBContext.ToListAsync());
+            return View(rundownEduDBContext.ToList());
         }
 
         // GET: Segment/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var segment = await _context.Segments
-                .Include(s => s.Story)
-                .FirstOrDefaultAsync(m => m.SegmentId == id);
+            var segment = _context.Segments.Include(s => s.Story).FirstOrDefault(m => m.SegmentId == id);
             if (segment == null)
             {
                 return NotFound();
@@ -45,7 +43,7 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Segment/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
             ViewData["StoryId"] = new SelectList(_context.Stories, "StoryId", "StoryId");
             return View();
@@ -56,12 +54,12 @@ namespace RundownEdu.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SegmentId,Type,Reader,EstimatedReadTime,ActualReadTime,StoryId")] Segment segment)
+        public ActionResult Create([Bind("SegmentId,Type,Reader,EstimatedReadTime,ActualReadTime,StoryId")] Segment segment)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(segment);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["StoryId"] = new SelectList(_context.Stories, "StoryId", "StoryId", segment.StoryId);
@@ -69,14 +67,14 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Segment/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var segment = await _context.Segments.FindAsync(id);
+            var segment = _context.Segments.Find(id);
             if (segment == null)
             {
                 return NotFound();
@@ -90,7 +88,7 @@ namespace RundownEdu.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SegmentId,Type,Reader,EstimatedReadTime,ActualReadTime,StoryId")] Segment segment)
+        public ActionResult Edit(int id, [Bind("SegmentId,Type,Reader,EstimatedReadTime,ActualReadTime,StoryId")] Segment segment)
         {
             if (id != segment.SegmentId)
             {
@@ -102,7 +100,7 @@ namespace RundownEdu.Controllers
                 try
                 {
                     _context.Update(segment);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -122,16 +120,16 @@ namespace RundownEdu.Controllers
         }
 
         // GET: Segment/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var segment = await _context.Segments
+            var segment = _context.Segments
                 .Include(s => s.Story)
-                .FirstOrDefaultAsync(m => m.SegmentId == id);
+                .FirstOrDefault(m => m.SegmentId == id);
             if (segment == null)
             {
                 return NotFound();
@@ -143,11 +141,11 @@ namespace RundownEdu.Controllers
         // POST: Segment/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            var segment = await _context.Segments.FindAsync(id);
+            var segment = _context.Segments.Find(id);
             _context.Segments.Remove(segment);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
