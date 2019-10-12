@@ -1,17 +1,19 @@
 ﻿@model IEnumerable<RundownEdu.Models.Rundown>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Rundowns";
 }
 
-<h2>Index</h2>
-
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-outline-primary" asp-action="Create"><i class="fas fa-plus"></i>&nbsp; New Rundown</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Show.Title)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -27,12 +29,22 @@
             <th>
                 @Html.DisplayNameFor(model => model.Active)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr style="background-color: @item.Show.Color; color: @item.Show.FontColor;">
+        <tr>
+            <td>
+                <div class="btn-group">
+                    <a class="btn btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.RundownId" title="Edit @item.Title"><i class="fas fa-pen-alt"></i></a>
+                    <a class="btn btn btn-outline-primary" asp-action="Details" asp-route-id="@item.RundownId" title="View @item.Title"><i class="fas fa-search"></i></a>
+                    @*<a class="btn btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.RundownId" title="Delete @item.Title"><i class="fas fa-trash"></i></a>*@
+                </div>
+            </td>
+            <td> @*<td style="background-color: @item.Show.Color; color: @item.Show.FontColor;">*@
+                <i class="fas fa-circle" style="color: @item.Show.Color;"></i>
+                @Html.DisplayFor(modelItem => item.Show.Title)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -46,12 +58,10 @@
                 @Html.DisplayFor(modelItem => item.Show.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RundownId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RundownId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RundownId">Delete</a>
+                @if (item.Active)
+                {
+                    <i class="fas fa-check"></i>
+                }
             </td>
         </tr>
 }

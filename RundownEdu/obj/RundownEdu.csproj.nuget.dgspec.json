@@ -14,7 +14,7 @@
         "outputPath": "E:\\Development\\VisualStudio\\Projects\\RundownEdu\\RundownEdu\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
@@ -43,6 +43,10 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "Font.Awesome": {
+              "target": "Package",
+              "version": "[5.11.1, )"
+            },
             "FontAwesome": {
               "target": "Package",
               "version": "[4.7.0, )"
