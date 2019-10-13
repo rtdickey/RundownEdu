@@ -39,7 +39,7 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var rundown = _context.Rundowns.Include(r => r.Show).FirstOrDefault(m => m.RundownId == id);
+            var rundown = _context.Rundowns.Include(r => r.Show).FirstOrDefault(m => m.Id == id);
             if (rundown == null)
             {
                 return NotFound();
@@ -52,13 +52,13 @@ namespace RundownEdu.Controllers
         // GET: Rundown/Create
         public ActionResult Create()
         {
-            ViewData["Show"] = new SelectList(_context.Shows, "ShowId", "Title");
+            ViewData["Show"] = new SelectList(_context.Shows, "Id", "Title");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("RundownId,Title,StartTime,EndTime,ShowId,Active")] Rundown rundown)
+        public ActionResult Create([Bind("Id,Title,StartTime,EndTime,ShowId,Active")] Rundown rundown)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace RundownEdu.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Show"] = new SelectList(_context.Shows, "ShowId", "Title", rundown.ShowId);
+            ViewData["Show"] = new SelectList(_context.Shows, "Id", "Title", rundown.ShowId);
             return View(rundown);
         }
 
@@ -78,13 +78,13 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var rundown = _context.Rundowns.Where(r => r.RundownId == id).Include(r => r.Show).Include(r => r.Stories).FirstOrDefault();
+            var rundown = _context.Rundowns.Where(r => r.Id == id).Include(r => r.Show).Include(r => r.Stories).FirstOrDefault();
             if (rundown == null)
             {
                 return NotFound();
             }
             var rundownVM = new RundownViewModel(_context, rundown);
-            ViewData["Show"] = new SelectList(_context.Shows, "ShowId", "Title", rundownVM.ShowId);
+            ViewData["Show"] = new SelectList(_context.Shows, "Id", "Title", rundownVM.ShowId);
             
             return View(rundownVM);
         }
@@ -94,9 +94,9 @@ namespace RundownEdu.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, [Bind("RundownId,Title,StartTime,EndTime,ShowId,Active")] Rundown rundown)
+        public ActionResult Edit(int id, [Bind("Id,Title,StartTime,EndTime,ShowId,Active")] Rundown rundown)
         {
-            if (id != rundown.RundownId)
+            if (id != rundown.Id)
             {
                 return NotFound();
             }
@@ -110,7 +110,7 @@ namespace RundownEdu.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RundownExists(rundown.RundownId))
+                    if (!RundownExists(rundown.Id))
                     {
                         return NotFound();
                     }
@@ -121,7 +121,7 @@ namespace RundownEdu.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Show"] = new SelectList(_context.Shows, "ShowId", "Title", rundown.ShowId);
+            ViewData["Show"] = new SelectList(_context.Shows, "Id", "Title", rundown.ShowId);
             return View(rundown);
         }
 
@@ -133,7 +133,7 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var rundown = _context.Rundowns.Include(r => r.Show).FirstOrDefault(m => m.RundownId == id);
+            var rundown = _context.Rundowns.Include(r => r.Show).FirstOrDefault(m => m.Id == id);
             if (rundown == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace RundownEdu.Controllers
 
         private bool RundownExists(int id)
         {
-            return _context.Rundowns.Any(e => e.RundownId == id);
+            return _context.Rundowns.Any(e => e.Id == id);
         }
     }
 }

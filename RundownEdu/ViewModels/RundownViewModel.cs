@@ -9,7 +9,7 @@ namespace RundownEdu.ViewModels
 {
     public class RundownViewModel
     {
-        public int RundownId;
+        public int Id;
         public string Title;
         public DateTime StartTime;
         public DateTime EndTime;
@@ -21,11 +21,11 @@ namespace RundownEdu.ViewModels
         public RundownViewModel() { }
         public RundownViewModel(RundownEduDBContext db, Rundown model)
         {
-            this.RundownId = model.RundownId;
+            this.Id = model.Id;
             this.Title = model.Title;
             this.StartTime = model.StartTime;
             this.EndTime = model.EndTime;
-            List<Story> stories = db.Stories.Where(x => x.RundownId == model.RundownId).ToList();
+            List<Story> stories = db.Stories.Where(x => x.RundownId == model.Id).ToList();
             this.Stories = new List<StoryViewModel>();
             stories.ForEach(s => this.Stories.Add(new StoryViewModel(db, s)));
             this.ShowId = model.ShowId;

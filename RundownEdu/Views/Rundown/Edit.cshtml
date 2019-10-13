@@ -9,36 +9,37 @@
         <h3>Edit Rundown: @Html.DisplayFor(model => model.Title)</h3>
     </div>
     <div class="col-auto ml-auto">
-        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model.RundownId" data-toggle="tooltip" title="Delete @Model.Title"><i class="fas fa-trash"></i></a>
+        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model.Id" data-toggle="tooltip" title="Delete @Model.Title"><i class="fas fa-trash"></i></a>
     </div>
 </div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="RundownId" />
+            @Html.HiddenFor(model => model.Id)
+
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+                @Html.LabelFor(model => model.Title, new { @class = "font-weight-bold" })<strong>:</strong>
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
-                <input asp-for="StartTime" class="form-control" />
+                @Html.LabelFor(model => model.StartTime, new { @class = "font-weight-bold" })<strong>:</strong>
+                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
                 <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EndTime" class="control-label"></label>
-                <input asp-for="EndTime" class="form-control" />
+                @Html.LabelFor(model => model.EndTime, new { @class = "font-weight-bold" })<strong>:</strong>
+                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
                 <span asp-validation-for="EndTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ShowId" class="control-label"></label>
+                @Html.LabelFor(model => model.ShowId, new { @class = "font-weight-bold" })<strong>:</strong>
                 <select asp-for="ShowId" class="form-control" asp-items="ViewBag.Show"></select>
                 <span asp-validation-for="ShowId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Active)
+                @Html.LabelFor(model => model.Active, new { @class = "font-weight-bold" })<strong>:</strong>
                 <label class="switch">
                     @Html.EditorFor(model => model.Active)
                     <span class="slider round"></span>

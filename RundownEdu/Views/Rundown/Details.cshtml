@@ -13,26 +13,26 @@
     <div class="col">
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.StartTime)
+                @Html.DisplayNameFor(model => model.StartTime)<strong>:</strong>
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.StartTime)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.EndTime)
+                @Html.DisplayNameFor(model => model.EndTime)<strong>:</strong>
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.EndTime)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.Show)
+                @Html.DisplayNameFor(model => model.Show)<strong>:</strong>
             </dt>
             <dd>
                 <i class="fas fa-circle" style="color: @Model.Show.Color;"></i>
                 @Html.DisplayFor(model => model.Show.Title)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.Active)
+                @Html.DisplayNameFor(model => model.Active)<strong>:</strong>
             </dt>
             <dd>
                 <label class="switch">
@@ -45,7 +45,7 @@
 </div>
 <div class="row">
     <div class="col">
-        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.RundownId">Edit</a>
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
         <a class="btn btn-outline-dark" asp-action="Index">Cancel</a>
     </div>
 </div>

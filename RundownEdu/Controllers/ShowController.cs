@@ -33,7 +33,7 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var show = _context.Shows.FirstOrDefault(m => m.ShowId == id);
+            var show = _context.Shows.FirstOrDefault(m => m.Id == id);
             if (show == null)
             {
                 return NotFound();
@@ -50,7 +50,7 @@ namespace RundownEdu.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("ShowId,Title,Active,Color")] Show show)
+        public ActionResult Create([Bind("Id,Title,Active,Color")] Show show)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var show = _context.Shows.Where(s => s.ShowId == id).FirstOrDefault();
+            var show = _context.Shows.Where(s => s.Id == id).FirstOrDefault();
             if (show == null)
             {
                 return NotFound();
@@ -84,9 +84,9 @@ namespace RundownEdu.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, [Bind("ShowId,Title,Active,Color")] Show show)
+        public ActionResult Edit(int id, [Bind("Id,Title,Active,Color")] Show show)
         {
-            if (id != show.ShowId)
+            if (id != show.Id)
             {
                 return NotFound();
             }
@@ -100,7 +100,7 @@ namespace RundownEdu.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ShowExists(show.ShowId))
+                    if (!ShowExists(show.Id))
                     {
                         return NotFound();
                     }
@@ -122,7 +122,7 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var show = _context.Shows.FirstOrDefault(m => m.ShowId == id);
+            var show = _context.Shows.FirstOrDefault(m => m.Id == id);
             if (show == null)
             {
                 return NotFound();
@@ -144,7 +144,7 @@ namespace RundownEdu.Controllers
 
         private bool ShowExists(int id)
         {
-            return _context.Shows.Any(e => e.ShowId == id);
+            return _context.Shows.Any(e => e.Id == id);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace RundownEdu.Models
                                 Title = "Morning Show Example",
                                 StartTime = morningShowExample.ToUniversalTime(),
                                 EndTime = morningShowExample.AddMinutes(30).ToUniversalTime(),
-                                ShowId = context.Shows.Select(s => s.ShowId).FirstOrDefault(),
+                                ShowId = context.Shows.Select(s => s.Id).FirstOrDefault(),
                                 Active = true
                             },
                             new Rundown
@@ -49,7 +49,7 @@ namespace RundownEdu.Models
                                 Title = "Afternoon Show Example",
                                 StartTime = afternoonShowExample.ToUniversalTime(),
                                 EndTime = afternoonShowExample.AddMinutes(30).ToUniversalTime(),
-                                ShowId = context.Shows.Select(s => s.ShowId).FirstOrDefault(),
+                                ShowId = context.Shows.Select(s => s.Id).FirstOrDefault(),
                                 Active = true
                             }
                         );

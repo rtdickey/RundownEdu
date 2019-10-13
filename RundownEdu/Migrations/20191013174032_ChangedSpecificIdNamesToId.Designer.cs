@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RundownEdu.Models;
 
 namespace RundownEdu.Migrations
 {
     [DbContext(typeof(RundownEduDBContext))]
-    partial class RundownEduDBContextModelSnapshot : ModelSnapshot
+    [Migration("20191013174032_ChangedSpecificIdNamesToId")]
+    partial class ChangedSpecificIdNamesToId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

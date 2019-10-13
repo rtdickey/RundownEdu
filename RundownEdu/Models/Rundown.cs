@@ -10,11 +10,13 @@ namespace RundownEdu.Models
     public class Rundown
     {
         [Key]
-        public int RundownId { get; set; }
+        public int Id { get; set; }
+        [Required]
         public string Title { get; set; }
-        [Display(Name = "Start Time")]
+
+        [Required, Display(Name = "Start Time")]
         public DateTime StartTime { get; set; }
-        [Display(Name = "End Time")]
+        [Required, Display(Name = "End Time")]
         public DateTime EndTime { get; set; }
         public virtual List<Story> Stories { get; set; }
         [ForeignKey("Show"), Display(Name = "Show")]

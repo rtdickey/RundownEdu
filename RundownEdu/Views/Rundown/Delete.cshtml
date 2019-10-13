@@ -13,29 +13,32 @@
     <div class="col">
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Title)<Strong>:</Strong>
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.Title)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.StartTime)
+                @Html.DisplayNameFor(model => model.StartTime)<Strong>:</Strong>
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.StartTime)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.EndTime)
+                @Html.DisplayNameFor(model => model.EndTime)<Strong>:</Strong>
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.EndTime)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.Show)
+                @Html.DisplayNameFor(model => model.Show)<Strong>:</Strong>
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.Show.Title)
             </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)<Strong>:</Strong>
+            </dt>
             <dd>
                 <label class="switch">
                     @Html.DisplayFor(model => model.Active)
@@ -45,7 +48,7 @@
         </dl>
 
         <form asp-action="Delete">
-            <input type="hidden" asp-for="RundownId" />
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <button type="submit" class="btn btn-danger">Delete</button>
                 <a class="btn btn-outline-dark" asp-action="Index">Cancel</a>

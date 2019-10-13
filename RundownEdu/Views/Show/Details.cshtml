@@ -4,33 +4,42 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<div class="row pb-3">
+    <div class="col">
+        <h3>Show Details: @Html.DisplayFor(model => model.Title)</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+            <dd>
+                <label class="switch">
+                    @Html.DisplayFor(model => model.Active)
+                    <span class="slider round"></span>
+                </label>
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Color)
+            </dt>
+            <dd>
+                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @type = "color", @disabled = "true" } })
+            </dd>
+        </dl>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-outline-dark" asp-action="Index">Cancel</a>
+    </div>
+</div>
 
-<div>
-    <h4>Show</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-        <dd>
-            @Html.DisplayNameFor(model => model.Color)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ShowId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
