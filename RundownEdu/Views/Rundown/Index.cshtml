@@ -9,7 +9,7 @@
 </p>
 
 
-<div id="myGrid" style="height: 100%;" class="ag-theme-balham"></div>
+<div id="rundownGrid" style="height: 600px; width: 100%;" class="ag-theme-balham"></div>
 
 
 
@@ -38,40 +38,53 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <div class="btn-group">
-                    <a class="btn btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.RundownId" data-toggle="tooltip" title="Edit @item.Title"><i class="fas fa-pen-alt"></i></a>
-                    <a class="btn btn btn-outline-primary" asp-action="Details" asp-route-id="@item.RundownId" data-toggle="tooltip" title="View @item.Title"><i class="fas fa-search"></i></a>
-                    @*<a class="btn btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.RundownId" data-toggle="tooltip" title="Delete @item.Title"><i class="fas fa-trash"></i></a>*@
-                </div>
-            </td>
-            <td> @*<td style="background-color: @item.Show.Color; color: @item.Show.FontColor;">*@
-                <i class="fas fa-circle" style="color: @item.Show.Color;"></i>
-                @Html.DisplayFor(modelItem => item.Show.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Show.Title)
-            </td>
-            <td>
-                @if (item.Active)
-                {
-                    <i class="fas fa-check"></i>
-                }
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.RundownId" data-toggle="tooltip" title="Edit @item.Title"><i class="fas fa-pen-alt"></i></a>
+                        <a class="btn btn btn-outline-primary" asp-action="Details" asp-route-id="@item.RundownId" data-toggle="tooltip" title="View @item.Title"><i class="fas fa-search"></i></a>
+                        @*<a class="btn btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.RundownId" data-toggle="tooltip" title="Delete @item.Title"><i class="fas fa-trash"></i></a>*@
+                    </div>
+                </td>
+                <td>
+                    @*<td style="background-color: @item.Show.Color; color: @item.Show.FontColor;">*@
+                    <i class="fas fa-circle" style="color: @item.Show.Color;"></i>
+                    @Html.DisplayFor(modelItem => item.Show.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Show.Title)
+                </td>
+                <td>
+                    @if (item.Active)
+                    {
+                        <i class="fas fa-check"></i>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
-<script src="~/js/redu-rundown.js"></script>
+@section Scripts {
+    <environment include="Development">
+        <script src="~/js/redu-rundown.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/redu-rundown.min.js"></script>
+    </environment>
+
+    <script>
+        loadGrid('rundownGrid');
+    </script>
+}

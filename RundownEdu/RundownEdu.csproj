@@ -10,6 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Font.Awesome" Version="5.11.1" />
     <PackageReference Include="FontAwesome" Version="4.7.0" />
     <PackageReference Include="jquery.datatables" Version="1.10.15" />
@@ -21,6 +25,10 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
