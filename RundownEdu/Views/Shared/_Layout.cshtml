@@ -7,8 +7,6 @@
 
     <environment include="Development">
         <link href="~/lib/jqueryui/jquery-ui.css" rel="stylesheet" />
-        <link href="~/lib/ag-grid/styles/ag-grid.css" rel="stylesheet" />
-        <link href="~/lib/ag-grid/styles/ag-theme-balham.css" rel="stylesheet" />
         <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
         <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
         <link href="~/css/site.css" rel="stylesheet" />
@@ -58,11 +56,19 @@
     <partial name="_CookieConsentPartial" />
 
     <div class="body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - RundownEdu</p>
-        </footer>
+        <div class="row pl-md-5 pr-md-5">
+            <div class="col pl-md-5 pr-md-5">
+                @RenderBody()
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - RundownEdu</p>
+                </footer>
+            </div>
+        </div>
     </div>
 
     <environment include="Development">
@@ -71,7 +77,6 @@
         <script src="~/lib/popper.js/dist/umd/popper.js"></script>
         <script src="~/lib/popper.js/dist/umd/popper-utils.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/lib/ag-grid/ag-grid-community.noStyle.js"></script>
         <script src="~/lib/font-awesome/js/all.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
@@ -81,7 +86,6 @@
         <script src="~/lib/popper.js/dist/umd/popper.min.js"></script>
         <script src="~/lib/popper.js/dist/umd/popper-utils.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="~/lib/ag-grid/ag-grid-community.min.noStyle.js"></script>
         <script src="~/lib/font-awesome/js/all.min.js"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>

@@ -22,7 +22,7 @@ namespace RundownEdu.Controllers
         // GET: Rundown
         public ActionResult Index()
         {
-            var modelList = _context.Rundowns.Include(r => r.Show).ToList();
+            var modelList = _context.Rundowns.Include(r => r.Show).OrderBy(r => r.StartTime).ThenBy(r => r.EndTime).ToList();
             foreach (Rundown model in modelList)
             {
                 FontColorManager(model.Show);

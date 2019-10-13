@@ -4,10 +4,14 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
-
-<h4>Rundown</h4>
-<hr />
+<div class="row pb-3">
+    <div class="col">
+        <h3>Edit Rundown: @Html.DisplayFor(model => model.Title)</h3>
+    </div>
+    <div class="col-auto ml-auto">
+        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model.RundownId" data-toggle="tooltip" title="Delete @Model.Title"><i class="fas fa-trash"></i></a>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -34,11 +38,11 @@
                 <span asp-validation-for="ShowId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
-                    </label>
-                </div>
+                @Html.LabelFor(model => model.Active)
+                <label class="switch">
+                    @Html.EditorFor(model => model.Active)
+                    <span class="slider round"></span>
+                </label>
             </div>
             <div class="form-group">
                 <table class="table">
@@ -53,16 +57,11 @@
                 </table>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a class="btn btn-outline-dark" asp-action="Index">Cancel</a>
             </div>
         </form>
     </div>
-</div>
-
-
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

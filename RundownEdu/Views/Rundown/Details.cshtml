@@ -4,45 +4,48 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Rundown</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Show)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Show.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-    </dl>
+<div class="row pb-3">
+    <div class="col">
+        <h3>Rundown Details: @Html.DisplayFor(model => model.Title)</h3>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.RundownId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="row">
+    <div class="col">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EndTime)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Show)
+            </dt>
+            <dd>
+                <i class="fas fa-circle" style="color: @Model.Show.Color;"></i>
+                @Html.DisplayFor(model => model.Show.Title)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+            <dd>
+                <label class="switch">
+                    @Html.DisplayFor(model => model.Active)
+                    <span class="slider round"></span>
+                </label>
+            </dd>
+        </dl>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.RundownId">Edit</a>
+        <a class="btn btn-outline-dark" asp-action="Index">Cancel</a>
+    </div>
 </div>

@@ -4,10 +4,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
-
-<h4>Rundown</h4>
-<hr />
+<div class="row pb-3">
+    <div class="col">
+        <h3>New Rundown</h3>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -29,24 +30,26 @@
             </div>
             <div class="form-group">
                 <label asp-for="ShowId" class="control-label"></label>
-                <select asp-for="ShowId" class ="form-control" asp-items="ViewBag.Show"></select>
+                <select asp-for="ShowId" class="form-control" asp-items="ViewBag.Show"></select>
+                <span asp-validation-for="ShowId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
-                    </label>
-                </div>
+                @Html.LabelFor(model => model.Active)
+                <label class="switch">
+                    @Html.EditorFor(model => model.Active)
+                    <span class="slider round"></span>
+                </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a class="btn btn-outline-dark" asp-action="Index">Cancel</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+
 </div>
 
 @section Scripts {
