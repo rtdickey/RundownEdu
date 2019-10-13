@@ -3,5 +3,6 @@
 
 // Write your JavaScript code.
 $(document).ready(function () {
-    $(document).tooltip({ trigger: "hover" });
+    //$(document).tooltip({ trigger: "hover" });
+    $('[data-toggle="tooltip"]').tooltip({ trigger: "hover" });
 })

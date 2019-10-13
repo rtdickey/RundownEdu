@@ -15,12 +15,50 @@
     {
       "library": "font-awesome@5.11.2",
       "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jqueryui@1.11.1",
+      "destination": "wwwroot/lib/jqueryui/"
+    },
+    {
+      "library": "ag-grid@21.2.1",
+      "destination": "wwwroot/lib/ag-grid/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "popper.js@1.15.0",
+      "destination": "wwwroot/lib/popper.js/",
+      "files": [
+        "dist/esm/popper-utils.js",
+        "dist/esm/popper-utils.js.map",
+        "dist/esm/popper-utils.min.js",
+        "dist/esm/popper-utils.min.js.map",
+        "dist/esm/popper.js",
+        "dist/esm/popper.js.map",
+        "dist/esm/popper.min.js",
+        "dist/esm/popper.min.js.map",
+        "dist/umd/popper-utils.js",
+        "dist/umd/popper-utils.js.map",
+        "dist/umd/popper-utils.min.js",
+        "dist/umd/popper-utils.min.js.map",
+        "dist/umd/popper.js",
+        "dist/umd/popper.js.map",
+        "dist/umd/popper.min.js",
+        "dist/umd/popper.min.js.map",
+        "dist/umd/poppper.js.flow",
+        "dist/popper-utils.js",
+        "dist/popper-utils.js.map",
+        "dist/popper-utils.min.js",
+        "dist/popper-utils.min.js.map",
+        "dist/popper.js",
+        "dist/popper.js.map",
+        "dist/popper.min.js",
+        "dist/popper.min.js.map",
+        "index.js.flow",
+        "package.json",
+        "README.md"
+      ]
     }
-  ,
-{
-  "provider": "unpkg",
-  "library": "jqueryui@1.11.1",
-  "destination": "wwwroot/lib/jqueryui/"
-}
-]
+  ]
 }
