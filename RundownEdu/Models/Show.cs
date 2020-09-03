@@ -17,6 +17,6 @@ namespace RundownEdu.Models
         [NotMapped]
         public string FontColor { get; set; } = "#000000";
         public bool Active { get; set; }
-        public virtual List<Rundown> Rundowns { get; set; }
+        public virtual List<Rundown> Rundowns { get; set; } = new List<Rundown>();
     }
 }

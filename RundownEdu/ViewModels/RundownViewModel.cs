@@ -9,27 +9,30 @@ namespace RundownEdu.ViewModels
 {
     public class RundownViewModel
     {
-        public int Id;
-        public string Title;
-        public DateTime StartTime;
-        public DateTime EndTime;
-        public List<StoryViewModel> Stories;
-        public int ShowId;
-        public Show Show;
-        public bool Active;
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public int ShowId { get; set; }
+        public string ShowTitle { get; set; }
+        public string ShowColor { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public List<StoryViewModel> Stories { get; set; }
+        public bool Active { get; set; }
 
         public RundownViewModel() { }
+
         public RundownViewModel(RundownEduDBContext db, Rundown model)
         {
             this.Id = model.Id;
             this.Title = model.Title;
             this.StartTime = model.StartTime;
+            this.ShowId = model.ShowId;
+            this.ShowTitle = model.Show?.Title;
+            this.ShowColor = model.Show?.Color;
             this.EndTime = model.EndTime;
             List<Story> stories = db.Stories.Where(x => x.RundownId == model.Id).ToList();
             this.Stories = new List<StoryViewModel>();
             stories.ForEach(s => this.Stories.Add(new StoryViewModel(db, s)));
-            this.ShowId = model.ShowId;
-            this.Show = model.Show;
             this.Active = model.Active;
         }
     }

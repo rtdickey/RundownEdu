@@ -8,12 +8,12 @@ namespace RundownEdu.ViewModels
 {
     public class StoryViewModel
     {
-        public int StoryId;
-        public string Title;
-        public int RundownId;
-        public Rundown Rundown;
-        public List<Segment> Segments;
-        public string Index;
+        public int StoryId { get; set; }
+        public string Title { get; set; }
+        public int RundownId { get; set; }
+        public Rundown Rundown { get; set; }
+        public List<Segment> Segments { get; set; }
+        public string Index { get; set; }
 
         public StoryViewModel() { }
         public StoryViewModel(RundownEduDBContext db, Story model)

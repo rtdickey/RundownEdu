@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,23 +13,23 @@ namespace RundownEdu.Controllers
 {
     public class RundownController : BaseController
     {
-        private readonly RundownEduDBContext _context;
+        private readonly RundownEduDBContext db;
 
         public RundownController(RundownEduDBContext context)
         {
-            _context = context;
+            db = context;
         }
 
         // GET: Rundown
         public ActionResult Index()
         {
-            var modelList = _context.Rundowns.Include(r => r.Show).OrderBy(r => r.StartTime).ThenBy(r => r.EndTime).ToList();
-            foreach (Rundown model in modelList)
+            var vm = new List<ShowOverviewViewModel>();
+            var showList = db.Shows.Where(x => x.Active).Include(x => x.Rundowns).OrderBy(x => x.Title).ToList();
+            if (showList != null && showList.Count > 0)
             {
-                FontColorManager(model.Show);
+                showList.ForEach(x => vm.Add(new ShowOverviewViewModel(db, x)));
             }
-
-            return View(modelList);
+            return View(vm);
         }
 
         // GET: Rundown/Details/5
@@ -39,20 +40,20 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var rundown = _context.Rundowns.Include(r => r.Show).FirstOrDefault(m => m.Id == id);
+            var rundown = db.Rundowns.Include(r => r.Show).FirstOrDefault(m => m.Id == id);
             if (rundown == null)
             {
                 return NotFound();
             }
 
-            var rundownVM = new RundownViewModel(_context, rundown);
+            var rundownVM = new RundownViewModel(db, rundown);
             return View(rundownVM);
         }
 
         // GET: Rundown/Create
         public ActionResult Create()
         {
-            ViewData["Show"] = new SelectList(_context.Shows, "Id", "Title");
+            ViewData["Show"] = new SelectList(db.Shows, "Id", "Title");
             return View();
         }
 
@@ -62,11 +63,11 @@ namespace RundownEdu.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rundown);
-                _context.SaveChanges();
+                db.Add(rundown);
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Show"] = new SelectList(_context.Shows, "Id", "Title", rundown.ShowId);
+            ViewData["Show"] = new SelectList(db.Shows, "Id", "Title", rundown.ShowId);
             return View(rundown);
         }
 
@@ -78,13 +79,13 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var rundown = _context.Rundowns.Where(r => r.Id == id).Include(r => r.Show).Include(r => r.Stories).FirstOrDefault();
+            var rundown = db.Rundowns.Where(r => r.Id == id).Include(r => r.Show).Include(r => r.Stories).FirstOrDefault();
             if (rundown == null)
             {
                 return NotFound();
             }
-            var rundownVM = new RundownViewModel(_context, rundown);
-            ViewData["Show"] = new SelectList(_context.Shows, "Id", "Title", rundownVM.ShowId);
+            var rundownVM = new RundownViewModel(db, rundown);
+            ViewData["Show"] = new SelectList(db.Shows, "Id", "Title", rundownVM.ShowId);
             
             return View(rundownVM);
         }
@@ -105,8 +106,8 @@ namespace RundownEdu.Controllers
             {
                 try
                 {
-                    _context.Update(rundown);
-                    _context.SaveChanges();
+                    db.Update(rundown);
+                    db.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -121,7 +122,7 @@ namespace RundownEdu.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Show"] = new SelectList(_context.Shows, "Id", "Title", rundown.ShowId);
+            ViewData["Show"] = new SelectList(db.Shows, "Id", "Title", rundown.ShowId);
             return View(rundown);
         }
 
@@ -133,7 +134,7 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var rundown = _context.Rundowns.Include(r => r.Show).FirstOrDefault(m => m.Id == id);
+            var rundown = db.Rundowns.Include(r => r.Show).FirstOrDefault(m => m.Id == id);
             if (rundown == null)
             {
                 return NotFound();
@@ -147,15 +148,15 @@ namespace RundownEdu.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var rundown = _context.Rundowns.Find(id);
-            _context.Rundowns.Remove(rundown);
-            _context.SaveChanges();
+            var rundown = db.Rundowns.Find(id);
+            db.Rundowns.Remove(rundown);
+            db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
         private bool RundownExists(int id)
         {
-            return _context.Rundowns.Any(e => e.Id == id);
+            return db.Rundowns.Any(e => e.Id == id);
         }
     }
 }

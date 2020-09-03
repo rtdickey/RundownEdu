@@ -4,3 +4,10 @@
 
 /RundownEdu.sln
 /.vs/RundownEdu
+/.vs
+/RundownEdu/.vs/RundownEdu
+/RundownEdu/bin/Debug/netcoreapp2.1/appsettings.Development.json
+/RundownEdu/bin/Debug/netcoreapp2.1/appsettings.json
+/RundownEdu/bin/Debug/netcoreapp2.1/libman.json
+/RundownEdu/obj/Release/netcoreapp2.1
+*.sln
