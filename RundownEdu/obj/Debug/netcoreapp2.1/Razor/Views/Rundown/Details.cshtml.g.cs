@@ -168,7 +168,7 @@ WriteAttributeValue(" ", 890, Model.ShowColor, 891, 16, false);
             WriteLiteral("\r\n                    <span class=\"slider round\"></span>\r\n                </label>\r\n            </dd>\r\n        </dl>\r\n    </div>\r\n</div>\r\n<div class=\"row\">\r\n    <div class=\"col\">\r\n        ");
             EndContext();
             BeginContext(1416, 78, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "96e06d8effc84c74a7f6480a881d07d9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7eaa5200f14a47398f2d6cfd3f8de1b0", async() => {
                 BeginContext(1486, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -204,7 +204,7 @@ WriteAttributeValue(" ", 890, Model.ShowColor, 891, 16, false);
             WriteLiteral("\r\n        ");
             EndContext();
             BeginContext(1504, 61, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "439a1f2a52b94cd89e08fb640c7486f7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aa7e6b1c2e8a491f8fb8d3b3da523827", async() => {
                 BeginContext(1555, 6, true);
                 WriteLiteral("Cancel");
                 EndContext();

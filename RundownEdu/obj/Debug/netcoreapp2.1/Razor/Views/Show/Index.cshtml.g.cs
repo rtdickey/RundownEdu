@@ -77,7 +77,7 @@ using RundownEdu.Extensions;
             WriteLiteral("\r\n<div class=\"row\">\r\n    <div class=\"col\">\r\n        <p>\r\n            ");
             EndContext();
             BeginContext(156, 97, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4a883886fe1443ffb45dccbcedc37271", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f77c636e5fc245b397ea25455745116b", async() => {
                 BeginContext(211, 38, true);
                 WriteLiteral("<i class=\"fas fa-plus\"></i>&nbsp; Show");
                 EndContext();
@@ -129,7 +129,7 @@ using RundownEdu.Extensions;
             WriteLiteral("                <tr>\r\n                    <td>\r\n                        <div class=\"btn-group\">\r\n                            ");
             EndContext();
             BeginContext(935, 160, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6a631db1283c4e8f86dc567c412608ba", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca3a6a75caf44021841aedbca74f1740", async() => {
                 BeginContext(1062, 29, true);
                 WriteLiteral("<i class=\"fas fa-search\"></i>");
                 EndContext();
@@ -174,7 +174,7 @@ AddHtmlAttributeValue(" ", 1048, item.Title, 1049, 11, false);
             WriteLiteral("\r\n                            ");
             EndContext();
             BeginContext(1125, 154, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0936377938d40fcbec75885779fa403", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cd99d5c2c55744dcb9069d669e14e656", async() => {
                 BeginContext(1249, 26, true);
                 WriteLiteral("<i class=\"fas fa-pen\"></i>");
                 EndContext();
