@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col">
         <p>
-            <a class="btn btn-outline-primary" asp-action="Create"><i class="fas fa-plus"></i>&nbsp; Rundown</a>
+            <a class="btn btn-primary" asp-action="Create"><i class="fas fa-plus"></i>&nbsp; Rundown</a>
         </p>
     </div>
 </div>
@@ -27,8 +27,8 @@
                                 </div>
                                 <div class="col-auto">
                                     <div class="btn-group">
-                                        <a class="btn btn-outline-primary" asp-controller="Show" asp-action="Details" asp-route-id="@show.Id" data-toggle="tooltip" title="View @show.Title"><i class="fas fa-search"></i></a>
-                                        <a class="btn btn-outline-primary" asp-controller="Show" asp-action="Edit" asp-route-id="@show.Id" data-toggle="tooltip" title="Edit @show.Title"><i class="fas fa-pen"></i></a>
+                                        <a class="btn btn-light border border-dark" asp-controller="Show" asp-action="Details" asp-route-id="@show.Id" data-toggle="tooltip" title="View @show.Title"><i class="fas fa-search text-dark"></i></a>
+                                        <a class="btn btn-light border border-dark" asp-controller="Show" asp-action="Edit" asp-route-id="@show.Id" data-toggle="tooltip" title="Edit @show.Title"><i class="fas fa-pen"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -38,10 +38,10 @@
                             {
                                 <div class="col border-bottom border-dark">
                                     <div class="row">
-                                        <div class="col-auto">
+                                        <div class="col-auto my-auto">
                                             <div class="btn-group">
-                                                <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@rundown.Id" data-toggle="tooltip" title="View @rundown.Title"><i class="fas fa-search"></i></a>
-                                                <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@rundown.Id" data-toggle="tooltip" title="Edit @rundown.Title"><i class="fas fa-pen"></i></a>
+                                                <a class="btn btn-outline-dark" asp-action="Details" asp-route-id="@rundown.Id" data-toggle="tooltip" title="View @rundown.Title"><i class="fas fa-search"></i></a>
+                                                <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@rundown.Id" data-toggle="tooltip" title="Edit @rundown.Title"><i class="fas fa-pen"></i></a>
                                             </div>
                                         </div>
                                         <div class="col">
@@ -72,65 +72,6 @@
         }
     </div>
 </div>
-
-@*<div class="row">
-        <div class="col">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>
-                            Show
-                        </th>
-                        <th>
-                            Rundown
-                        </th>
-                        <th>
-                            Start Time
-                        </th>
-                        <th>
-                            End Time
-                        </th>
-                        <th>
-                            Active
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id" data-toggle="tooltip" title="View @item.Title"><i class="fas fa-search"></i></a>
-                                    <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id" data-toggle="tooltip" title="Edit @item.Title"><i class="fas fa-pen"></i></a>
-                                </div>
-                            </td>
-                            <td>
-                                <i class="fas fa-circle" style="color: @item.ShowColor;"></i>
-                                @Html.DisplayFor(modelItem => item.ShowTitle)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Title)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StartTime)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EndTime)
-                            </td>
-                            <td>
-                                @if (item.Active)
-                                {
-                                    <i class="fas fa-check"></i>
-                                }
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>*@
 
 @section Scripts {
     <environment include="Development">
