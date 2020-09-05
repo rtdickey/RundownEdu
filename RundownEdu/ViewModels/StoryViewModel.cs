@@ -16,7 +16,7 @@ namespace RundownEdu.ViewModels
         public string Index { get; set; }
 
         public StoryViewModel() { }
-        public StoryViewModel(RundownEduDBContext db, Story model)
+        public StoryViewModel(Story model)
         {
             this.StoryId = model.StoryId;
             this.Title = model.Title;

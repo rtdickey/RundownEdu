@@ -11,17 +11,45 @@ namespace RundownEdu.ViewModels
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int ShowId { get; set; }
+        public virtual Show Show { get; set; }
+        public virtual List<StoryViewModel> Stories { get; set; } = new List<StoryViewModel>();
+        public bool Active { get; set; }
+
+        public RundownViewModel() { }
+
+        public RundownViewModel(Rundown model)
+        {
+            Id = model.Id;
+            Title = model.Title;
+            StartTime = model.StartTime;
+            EndTime = model.EndTime;
+            ShowId = model.ShowId;
+            Show = model.Show;
+            EndTime = model.EndTime;
+            if (model.Stories is null) { model.Stories = new List<Story>(); }
+            model.Stories.ForEach(x => Stories.Add(new StoryViewModel(x)));
+            Active = model.Active;
+        }
+    }
+
+    public class RundownOverviewViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
         public int ShowId { get; set; }
         public string ShowTitle { get; set; }
         public string ShowColor { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public List<StoryViewModel> Stories { get; set; }
+        public List<StoryViewModel> Stories { get; set; } = new List<StoryViewModel>();
         public bool Active { get; set; }
 
-        public RundownViewModel() { }
+        public RundownOverviewViewModel() { }
 
-        public RundownViewModel(RundownEduDBContext db, Rundown model)
+        public RundownOverviewViewModel(Rundown model)
         {
             this.Id = model.Id;
             this.Title = model.Title;
@@ -30,9 +58,8 @@ namespace RundownEdu.ViewModels
             this.ShowTitle = model.Show?.Title;
             this.ShowColor = model.Show?.Color;
             this.EndTime = model.EndTime;
-            List<Story> stories = db.Stories.Where(x => x.RundownId == model.Id).ToList();
-            this.Stories = new List<StoryViewModel>();
-            stories.ForEach(s => this.Stories.Add(new StoryViewModel(db, s)));
+            if (model.Stories is null) { model.Stories = new List<Story>(); }
+            model.Stories.ForEach(x => Stories.Add(new StoryViewModel(x)));
             this.Active = model.Active;
         }
     }

@@ -46,20 +46,22 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var rundownVM = new RundownViewModel(db, rundown);
+            var rundownVM = new RundownViewModel(rundown);
             return View(rundownVM);
         }
 
         // GET: Rundown/Create
         public ActionResult Create()
         {
+            var model = new Rundown() { Active = true };
+            var vm = new RundownViewModel(model);
             ViewData["Show"] = new SelectList(db.Shows, "Id", "Title");
-            return View();
+            return View(vm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("Id,Title,StartTime,EndTime,ShowId,Active")] Rundown rundown)
+        public ActionResult Create([Bind("Id,Title,StartTime,EndTime,ShowId,Active")] RundownViewModel rundown)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +86,7 @@ namespace RundownEdu.Controllers
             {
                 return NotFound();
             }
-            var rundownVM = new RundownViewModel(db, rundown);
+            var rundownVM = new RundownViewModel(rundown);
             ViewData["Show"] = new SelectList(db.Shows, "Id", "Title", rundownVM.ShowId);
             
             return View(rundownVM);
