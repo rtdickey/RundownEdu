@@ -32,7 +32,7 @@ namespace RundownEdu.Controllers
                 return NotFound();
             }
 
-            var story = _context.Stories.FirstOrDefault(m => m.StoryId == id);
+            var story = _context.Stories.FirstOrDefault(m => m.Id == id);
             if (story == null)
             {
                 return NotFound();
@@ -86,7 +86,7 @@ namespace RundownEdu.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, [Bind("StoryId,Title")] Story story)
         {
-            if (id != story.StoryId)
+            if (id != story.Id)
             {
                 return NotFound();
             }
@@ -100,7 +100,7 @@ namespace RundownEdu.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StoryExists(story.StoryId))
+                    if (!StoryExists(story.Id))
                     {
                         return NotFound();
                     }
@@ -123,7 +123,7 @@ namespace RundownEdu.Controllers
             }
 
             var story = _context.Stories
-                .FirstOrDefault(m => m.StoryId == id);
+                .FirstOrDefault(m => m.Id == id);
             if (story == null)
             {
                 return NotFound();
@@ -145,7 +145,7 @@ namespace RundownEdu.Controllers
 
         private bool StoryExists(int id)
         {
-            return _context.Stories.Any(e => e.StoryId == id);
+            return _context.Stories.Any(e => e.Id == id);
         }
     }
 }

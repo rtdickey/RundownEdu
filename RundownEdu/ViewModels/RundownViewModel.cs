@@ -1,13 +1,17 @@
-﻿using RundownEdu.Models;
+﻿using Microsoft.AspNetCore.Identity.UI.Pages.Internal.Account;
+using Microsoft.EntityFrameworkCore;
+using RundownEdu.Interfaces;
+using RundownEdu.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace RundownEdu.ViewModels
 {
-    public class RundownViewModel
+    public class RundownViewModel : IConvertToModel<Rundown, RundownEduDBContext>
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -29,9 +33,50 @@ namespace RundownEdu.ViewModels
             ShowId = model.ShowId;
             Show = model.Show;
             EndTime = model.EndTime;
-            if (model.Stories is null) { model.Stories = new List<Story>(); }
-            model.Stories.ForEach(x => Stories.Add(new StoryViewModel(x)));
             Active = model.Active;
+            if (model.Stories == null) { model.Stories = new List<Story>(); }
+            model.Stories.ForEach(x => Stories.Add(new StoryViewModel(x)));
+        }
+
+        public Rundown ConvertToModel(RundownEduDBContext context)
+        {
+            return ConvertVMToModel(context, new Rundown());
+        }
+
+        public Rundown ConvertToModel(RundownEduDBContext context, Rundown model)
+        {
+            return ConvertVMToModel(context, model);
+        }
+
+        public Rundown ConvertVMToModel(RundownEduDBContext context, Rundown model)
+        {
+            model.Id = Id;
+            model.Title = Title;
+            model.StartTime = StartTime;
+            model.EndTime = EndTime;
+            model.ShowId = ShowId;
+            model.Show = Show;
+            model.EndTime = EndTime;
+            model.Active = Active;
+            if (Stories == null) { Stories = new List<StoryViewModel>(); }
+            for (int i = 0; i < model.Stories.Count(); i++)
+            {
+                int itemId = model.Stories[i].Id;
+                var editedItem = Stories.Find(x => x.Id == itemId);
+                if (editedItem != null)
+                {
+                    model.Stories[i] = editedItem.ConvertToModel(context, model.Stories[i]);
+                }
+                else
+                {
+                    var delItem = context.Stories.Find(itemId);
+                    if (delItem != null)
+                    {
+                        context.Entry(delItem).State = EntityState.Deleted;
+                    }
+                }
+            }
+            return model;
         }
     }
 

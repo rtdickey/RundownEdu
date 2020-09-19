@@ -23,11 +23,11 @@ namespace RundownEdu.Controllers
         // GET: Rundown
         public ActionResult Index()
         {
-            var vm = new List<ShowOverviewViewModel>();
+            var vm = new List<ShowViewModel>();
             var showList = db.Shows.Where(x => x.Active).Include(x => x.Rundowns).OrderBy(x => x.Title).ToList();
             if (showList != null && showList.Count > 0)
             {
-                showList.ForEach(x => vm.Add(new ShowOverviewViewModel(db, x)));
+                showList.ForEach(x => vm.Add(new ShowViewModel(x)));
             }
             return View(vm);
         }

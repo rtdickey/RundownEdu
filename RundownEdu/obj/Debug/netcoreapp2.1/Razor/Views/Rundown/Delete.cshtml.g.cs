@@ -179,12 +179,12 @@ using RundownEdu.Extensions;
             WriteLiteral("\r\n                    <span class=\"slider round\"></span>\r\n                </label>\r\n            </dd>\r\n        </dl>\r\n\r\n        ");
             EndContext();
             BeginContext(1507, 308, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3d17351808134816a7f9c6a93b3b2ac7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b26ef491af642a2929f19072903c097", async() => {
                 BeginContext(1533, 14, true);
                 WriteLiteral("\r\n            ");
                 EndContext();
                 BeginContext(1547, 36, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "52c2fa2fc7124cd69bae44a94c088c39", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "4b2caf40d08c4d0895032bf70041e94c", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -209,7 +209,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n            <div class=\"form-group\">\r\n                <button type=\"submit\" class=\"btn btn-danger\">Delete</button>\r\n                ");
                 EndContext();
                 BeginContext(1717, 61, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "84c321e32421484b83ca40cd9dd9c656", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a1b92b1787a64cb3bef04ad9c11d2485", async() => {
                     BeginContext(1768, 6, true);
                     WriteLiteral("Cancel");
                     EndContext();

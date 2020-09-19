@@ -9,7 +9,7 @@ namespace RundownEdu.Models
 {
     public class Story
     {
-        public int StoryId { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         [ForeignKey("Rundown")]
         public int RundownId { get; set; }
